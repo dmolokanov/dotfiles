@@ -1,0 +1,14 @@
+[user]
+  name = dmolokanov
+  email = dmolokanov@users.noreply.github.com
+
+[alias]
+  a = add
+  b = branch
+  c = commit
+  cl = clone
+  co = checkout
+  l = pull
+  p = push
+  rb = rebase
+  st = status
