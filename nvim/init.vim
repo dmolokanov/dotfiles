@@ -110,27 +110,22 @@ highlight link ALEVirtualTextInfo Todo
 highlight link ALEVirtualTextError WarningMsg
 highlight ALEError guibg=None
 highlight ALEWarning guibg=None
-" let g:ale_sign_error = "✖"
-" let g:ale_sign_warning = "⚠"
-" let g:ale_sign_info = "i"
-" let g:ale_sign_hint = "➤"
+let g:ale_sign_error = "✖"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "i"
+let g:ale_sign_hint = "➤"
 
 nnoremap <silent> K :ALEHover<CR>
 nnoremap <silent> gd :ALEGoToDefinition<CR>
 
 " enable ncm2 for all buffers
-" augroup NCM
-"     autocmd!
-      autocmd BufEnter * call ncm2#enable_for_buffer()
-" augroup END
+augroup NCM
+    autocmd!
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
 
 " IMPORTANT: :help Ncm2PopupOpen for more information
- set completeopt=noinsert,menuone,noselect
- 
-" tab to select
-inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
-" and don't hijack my enter key
-inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
+set completeopt=noinsert,menuone,noselect
 
 " =============================================================================
 " # GUI settings
@@ -142,7 +137,6 @@ set wildmode=longest:full,full
 set noswapfile                                      " disable swap files
 set autoread                                        " automatically read changes in the file
 set clipboard^=unnamed,unnamedplus                  " use system clipboard on all platforms
-set completeopt=longest,menuone,preview             " better insert mode completions
 set nowrap                                          " disable soft wrap for lines
 set scrolloff=2                                     " always show 2 lines above/below the cursor
 set showcmd                                         " display incomplete commands
