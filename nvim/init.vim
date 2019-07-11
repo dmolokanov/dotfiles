@@ -1,5 +1,5 @@
 " =============================================================================
-" # PLUGINS
+" PLUGINS
 " =============================================================================
 " Load vundle
 call plug#begin()
@@ -15,7 +15,9 @@ Plug 'w0rp/ale'                       " async linting
 Plug 'machakann/vim-highlightedyank'  " make yanked region highlighted
 Plug 'andymass/vim-matchup'           " better support of matching for programming languages
 Plug 'matze/vim-move'                 " easily move lines
-Plug 'junegunn/fzf'
+Plug '/usr/local/opt/fzf'             " fuzzy search plugin
+Plug 'junegunn/fzf.vim'               " fuzzy search integration for vim
+Plug 'scrooloose/nerdtree'            " file explorer
 
 Plug 'chriskempson/base16-vim'        " base16 color schemas
 
@@ -49,7 +51,6 @@ if has('nvim')
     noremap <C-q> :confirm qall<CR>
 end
 
-
 " deal with colors
 if !has('gui_running')
   set t_Co=256 " enable 256 colors
@@ -71,14 +72,32 @@ syntax on
 " Base16
 let base16colorspace=256
 
+" =============================================================================
 " Lightline
+" =============================================================================
 let g:lightline = { 'colorscheme': 'wombat' }
 
 function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
 
+" =============================================================================
+" NERDTree
+" =============================================================================
+
+" open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" open NERDTree automatically when vim starts up on opening a directory
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" =============================================================================
 " LSP
+" =============================================================================
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
@@ -87,7 +106,9 @@ let g:LanguageClient_serverCommands = {
 " Rust
 let g:rustfmt_autosave = 1
 
+" =============================================================================
 " Linter
+" =============================================================================
 " only lint on save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
@@ -118,6 +139,9 @@ let g:ale_sign_hint = "➤"
 nnoremap <silent> K :ALEHover<CR>
 nnoremap <silent> gd :ALEGoToDefinition<CR>
 
+" =============================================================================
+" NCM2
+" =============================================================================
 " enable ncm2 for all buffers
 augroup NCM
     autocmd!
@@ -128,7 +152,7 @@ augroup END
 set completeopt=noinsert,menuone,noselect
 
 " =============================================================================
-" # GUI settings
+" GUI settings
 " =============================================================================
 set ttyfast                                         " more characters will be sent to the screen for redrawing
 set backspace=indent,eol,start                      " make backspace behave properly in insert mode
