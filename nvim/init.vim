@@ -95,6 +95,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " =============================================================================
 " LSP
 " =============================================================================
@@ -135,9 +136,6 @@ let g:ale_sign_error = "✖"
 let g:ale_sign_warning = "⚠"
 let g:ale_sign_info = "i"
 let g:ale_sign_hint = "➤"
-
-nnoremap <silent> K :ALEHover<CR>
-nnoremap <silent> gd :ALEGoToDefinition<CR>
 
 " =============================================================================
 " NCM2
@@ -182,4 +180,61 @@ set nofoldenable    				                        " disable folding
 set ruler                                           " dispaly cursor position in the editor
 set mouse=a 		                                    " Enable mouse usage (all modes) in terminals
 
+" =============================================================================
+" Keyboard shortcuts
+" =============================================================================
+" Space as a leader key
+let mapleader="\<Space>"
 
+" No arrow keys - force yourself to use the home row
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" ; as :
+nnoremap ; :
+
+" Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Quick-save
+nmap <leader>w :w<CR>
+
+" Left and right can switch buffers
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+" Jump to next/previous error
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent> L <Plug>(ale_lint)
+nmap <silent> <C-l> <Plug>(ale_detail)
+nmap <silent> <C-g> :close<cr>
+
+nnoremap <silent> K :ALEHover<CR>
+nnoremap <silent> gd :ALEGoToDefinition<CR>
+
+" Open hotkeys
+map <C-p> :Files<CR>
+nmap <leader>; :Buffers<CR>
+
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
+
+" NERDTree
+map <leader>nt :NERDTreeToggle<CR>
+map <leader>nr :NERDTree<CR>
+map <leader>nf :NERDTreeFind<CR>
+
+" =============================================================================
+" Autocommands
+" =============================================================================
+" Jump to last edit position on opening file
+if has("autocmd")
+  " https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+  au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
