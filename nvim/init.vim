@@ -18,6 +18,7 @@ Plug 'matze/vim-move'                 " easily move lines
 Plug '/usr/local/opt/fzf'             " fuzzy search plugin
 Plug 'junegunn/fzf.vim'               " fuzzy search integration for vim
 Plug 'scrooloose/nerdtree'            " file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'    " show git status flags in file expoler
 
 Plug 'chriskempson/base16-vim'        " base16 color schemas
 
@@ -185,6 +186,10 @@ set mouse=a 		                                    " Enable mouse usage (all mode
 " =============================================================================
 " Space as a leader key
 let mapleader="\<Space>"
+
+" Avoid Esc button with shortcut
+imap jk <ESC>
+imap jj <ESC>
 
 " No arrow keys - force yourself to use the home row
 nnoremap <up> <nop>
