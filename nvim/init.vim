@@ -19,7 +19,7 @@ Plug '/usr/local/opt/fzf'             " fuzzy search plugin
 Plug 'junegunn/fzf.vim'               " fuzzy search integration for vim
 Plug 'scrooloose/nerdtree'            " file explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'    " show git status flags in file expoler
-
+Plug 'scrooloose/nerdcommenter'       " comment lines
 Plug 'chriskempson/base16-vim'        " base16 color schemas
 
 " Semantic language support
@@ -151,6 +151,21 @@ augroup END
 set completeopt=noinsert,menuone,noselect
 
 " =============================================================================
+" NERDCommenter
+" =============================================================================
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" =============================================================================
 " GUI settings
 " =============================================================================
 set ttyfast                                         " more characters will be sent to the screen for redrawing
@@ -187,9 +202,12 @@ set mouse=a 		                                    " Enable mouse usage (all mode
 " Space as a leader key
 let mapleader="\<Space>"
 
-" Avoid Esc button with shortcut
-imap jk <ESC>
+" Esc button with shortcut
 imap jj <ESC>
+
+" Move by line
+nnoremap j gj
+nnoremap k gk
 
 " No arrow keys - force yourself to use the home row
 nnoremap <up> <nop>
