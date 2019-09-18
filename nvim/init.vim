@@ -20,7 +20,7 @@ Plug 'junegunn/fzf.vim'               " fuzzy search integration for vim
 Plug 'scrooloose/nerdtree'            " file explorer
 Plug 'Xuyuanp/nerdtree-git-plugin'    " show git status flags in file expoler
 Plug 'scrooloose/nerdcommenter'       " comment lines
-Plug 'chriskempson/base16-vim'        " base16 color schemas
+Plug 'joshdick/onedark.vim'           " onedark color schema
 
 " Semantic language support
 Plug 'ncm2/ncm2'
@@ -64,19 +64,16 @@ endif
 
 " Colors
 set background=dark
-colorscheme base16-gruvbox-dark-hard 
+colorscheme onedark
 "hi Normal ctermbg=NONE
 
 " Get syntax
 syntax on
 
-" Base16
-let base16colorspace=256
-
 " =============================================================================
 " Lightline
 " =============================================================================
-let g:lightline = { 'colorscheme': 'wombat' }
+let g:lightline = { 'colorscheme': 'onedark' }
 
 function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
