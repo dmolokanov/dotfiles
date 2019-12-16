@@ -1,0 +1,55 @@
+
+" =============================================================================
+" GUI settings
+" =============================================================================
+set number 					                                " show current absolute line number
+" set relativenumber 				                          " show relative line numbers
+set clipboard+=unnamed                              " use system clipboard instead of unnamed buffer
+set showmode                                        " show current mode in the status line
+
+set surround
+
+" =============================================================================
+" Keyboard shortcuts
+" =============================================================================
+" Space as a leader key
+let mapleader=" "
+" let mapleader=","
+
+" Avoid Esc button with shortcut
+imap jk <ESC>
+imap jj <ESC>
+
+" Yank from cursor to end of line, to be consistent with C and D.
+nnoremap Y y$
+
+" Keep a block highlighted while shifting
+vnoremap < <gv
+vnoremap > >gv
+
+" No arrow keys - force yourself to use the home row
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" ; as :
+nnoremap ; :
+
+" Jump to start and end of line using the home row keys
+map H ^
+map L $
+
+" Quick-save
+nmap <leader>w :w<CR>
+
+nnoremap <silent> <leader>f :action ReformatCode<CR>
+
+" Left and right can switch buffers
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+" <leader><leader> toggles between buffers
+nnoremap <leader><leader> <c-^>
