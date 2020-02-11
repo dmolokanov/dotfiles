@@ -82,6 +82,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " =============================================================================
 " NERDCommenter
 " =============================================================================
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -97,6 +98,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " =============================================================================
 " coc.vim
 " =============================================================================
+
 " if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -166,8 +168,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  :call CocAction('format')
 
 augroup mygroup
   autocmd!
@@ -182,9 +185,8 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+" nmap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
 xmap if <Plug>(coc-funcobj-i)
