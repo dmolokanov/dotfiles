@@ -104,6 +104,12 @@ alias cat="bat"
 alias vim="nvim"
 alias v="nvim"
 
+alias cc="cargo check"
+alias cb="cargo build"
+alias cr="cargo run"
+alias cl="cargo clean"
+alias cw="cargo watch"
+
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

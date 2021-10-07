@@ -26,7 +26,7 @@ Plug 'airblade/vim-gitgutter'         " show git changes in the file
 
 " Programming language support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neovim/nvim-lsp'
+" Plug 'neovim/nvim-lsp'
 Plug 'cespare/vim-toml'
 
 call plug#end()
